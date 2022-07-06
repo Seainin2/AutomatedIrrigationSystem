@@ -1,0 +1,36 @@
+[[package]]
+name = "pyfirmata"
+version = "1.1.0"
+description = "A Python interface for the Firmata procotol"
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+pyserial = "*"
+
+[[package]]
+name = "pyserial"
+version = "3.5"
+description = "Python Serial Port Extension"
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.extras]
+cp2110 = ["hidapi"]
+
+[metadata]
+lock-version = "1.1"
+python-versions = "^3.8"
+content-hash = "5c45121ed2ac176e5b3c86e29fb42e22f0df0a4e79ddb5f1cd82b7effafe52ed"
+
+[metadata.files]
+pyfirmata = [
+    {file = "pyFirmata-1.1.0-py2.py3-none-any.whl", hash = "sha256:03091ffd0b06a483d286d9738ead97a50c55cf1bf6b89a5bd0c420d0a7797420"},
+    {file = "pyFirmata-1.1.0.tar.gz", hash = "sha256:cc180d1b30c85a2bbca62c15fef1b871db048cdcfa80959968356d97bd3ff08e"},
+]
+pyserial = [
+    {file = "pyserial-3.5-py2.py3-none-any.whl", hash = "sha256:c4451db6ba391ca6ca299fb3ec7bae67a5c55dde170964c7a14ceefec02f2cf0"},
+    {file = "pyserial-3.5.tar.gz", hash = "sha256:3c77e014170dfffbd816e6ffc205e9842efb10be9f58ec16d3e8675b4925cddb"},
+]
