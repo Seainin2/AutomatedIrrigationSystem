@@ -1,15 +1,10 @@
 from pyfirmata import Arduino
-import time
 
-board = Arduino("COM6")
-flag = True
-num = 1
+board = Arduino("COM5")
 
-while(flag):
-  board.digital[13].write(num)
-  time.sleep(1)
-  if num == 1:
-    num = 0
-  if num == 0:
-    num = 1
-  
+loopTimes = input('How many times would you like the LED to blink: ')
+print("Blinking " + loopTimes + " times.")
+
+for x in range(int(loopTimes)):
+        pin13 = board.get_pin('d:13:p')
+        pin13.write(1)
