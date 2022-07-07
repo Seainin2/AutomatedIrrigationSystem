@@ -8,10 +8,11 @@ class ArduinoNano:
                 self.pumps = []
 
         def add_pump(self,pump_name,pump_pin,ms_pin,ms_highest_value,ms_lowest_value):
+                
                 self.pumps.append({
                         "pump_name":pump_name,
-                        "pump_pin":pump_pin,
-                        "ms_pin":ms_pin,
+                        "pump_pin":self.board.digital[pump_pin],
+                        "ms_pin":self.board.get_pin('a:'+str(ms_pin)+':i'),
                         "ms_highest_value":ms_highest_value,
                         "ms_lowest_value":ms_lowest_value
                         })
@@ -26,22 +27,37 @@ class ArduinoNano:
                                 self.board.digital[pin_on].write(1)
 
         def turn_on_off_pump_using_sensors(self,t):
-                pump = self.pumps[0]
-                pin = self.board.get_pin('a:'+ pump["ms_pin"] +':i')
-                it = util.Iterator(self.board)
-                it.start()
+                for pump in self.pumps:
+                        pin = self.board.get_pin('a:'+ pump["ms_pin"] +':i')
+                        it = util.Iterator(self.board)
+                        it.start()
                 
-                if 30 > floor(-((((pin.read-pump["ms_lowest_value"])/(pump["ms_highest_value"]-pump["ms_lowest_value"]))*100)-100)):
-                        self.board.digital[pump["pump_pin"]].write(0)
-                        time.sleep(t)
-                        self.board.digital[pump["pump_pin"]].write(1)
+                        if 30 > floor(-((((pin.read-pump["ms_lowest_value"])/(pump["ms_highest_value"]-pump["ms_lowest_value"]))*100)-100)):
+                                self.board.digital[pump["pump_pin"]].write(0)
+                                time.sleep(t)
+                                self.board.digital[pump["pump_pin"]].write(1)
 
         def turn_all_off(self):
                 for pump in self.pumps:
-                        print("here")
-                        self.board.digital[pump["pump_pin"]].write(1)
+                        pump["pump_pin"].write(1)
 
         def turn_all_on(self):
                 for pump in self.pumps:
-                        self.board.digital[pump["pump_pin"]].write(0)
+                        pump["pump_pin"].write(0)
+        
+        def get_sensor_value(self):
+                #sensor_values = []
+                
+                pump = self.pumps[0]
+                print(pump["ms_pin"].read())
+                time.sleep(0.1)
+
+                        #sensor_values.append({
+                        #        "pump_name":pump["pump_name"],
+                        #        "sensor_value":pin.read()
+                        #        })
+                
+                #return sensor_values
+
+
 
