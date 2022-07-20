@@ -1,13 +1,10 @@
-from pyfirmata import Arduino,util
-import time
+from curses import baudrate
+import serial.tools.list_ports
+import _curses
+ports = serial.tools.list_ports.comports()
 
-board = Arduino("COM6",baudrate=57600)
+for port, desc, hwid in sorted(ports):
+    print("{}: {} [{}]".format(port. desc. hwid))
 
-it = util.Iterator(board)
-it.start()
-
-pin = board.get_pin('a:0:i')
-
-while True:
-    print(pin.read())
-    time.sleep(1)
+import serial
+port = serial.Serial("COM6", baudrate=57600)
