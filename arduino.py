@@ -3,9 +3,9 @@ from math import floor
 from pyfirmata import Arduino, util
 
 class ArduinoNano:
-        def __init__(self):
+        def __init__(self,usb):
                 print("setting up port")
-                self.board = Arduino("COM9",baudrate=57600)
+                self.board = Arduino(usb,baudrate=57600)
                 print("Done")
                 self.pumps = []
 
