@@ -1,22 +1,20 @@
 import board
 import digitalio
 import time
-lcd_rs = digitalio.DigitalInOut(board.D26)
-lcd_en = digitalio.DigitalInOut(board.D19)
-lcd_d7 = digitalio.DigitalInOut(board.D27)
-lcd_d6 = digitalio.DigitalInOut(board.D22)
-lcd_d5 = digitalio.DigitalInOut(board.D24)
-lcd_d4 = digitalio.DigitalInOut(board.D25)
-
-lcd_columns = 16
-lcd_rows = 2
-
 import adafruit_character_lcd.character_lcd as characterlcd
-lcd = characterlcd.Character_LCD_Mono(lcd_rs,lcd_en,lcd_d4,lcd_d5,lcd_d6,
-	lcd_d7,lcd_columns,lcd_rows)
 
-lcd.message = "Hello\nCircuitPython!"
 
-for x in range(0, 16):
-	lcd.move_right()
-	time.sleep(1)
+class LCDPython:
+	def __init():
+		lcd_rs = digitalio.DigitalInOut(board.D26)
+		lcd_en = digitalio.DigitalInOut(board.D19)
+		lcd_d7 = digitalio.DigitalInOut(board.D27)
+		lcd_d6 = digitalio.DigitalInOut(board.D22)
+		lcd_d5 = digitalio.DigitalInOut(board.D24)
+		lcd_d4 = digitalio.DigitalInOut(board.D25)
+
+		lcd_columns = 16
+		lcd_rows = 2
+
+		self.lcd = characterlcd.Character_LCD_Mono(lcd_rs,lcd_en,lcd_d4,lcd_d5,lcd_d6,lcd_d7,lcd_columns,lcd_rows)
+
