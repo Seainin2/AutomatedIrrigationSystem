@@ -7,24 +7,20 @@ import time
 app = flask.Flask(__name__)
 app.config["DEBUG"] = True
 
-nano = ArduinoNano()
-nano.add_pump('one',  2,  0,0.7,0.24)
-nano.add_pump('two',  3,  1,0.7,0.24)
-nano.add_pump('three',4,  2,0.7,0.24)
-nano.add_pump('four', 5,  3,0.7,0.24)
+incomes = [
+    {'description':'salary','amount':5000},
+    {'description':'side project','amount':400}
+]
 
-nano.turn_all_pumps_off()
-
-it = pyfirmata.util.Iterator(nano.board)
-it.start()
-time.sleep(5)
-
-@app.route('/', methods=['GET'])
-def home():
+@app.route('/incomes', methods=['GET'])
+def get_incomes():
     
-    return "<h1>Hello World</h1>"
-    #return nano.turn_on_off_pump_using_sensors(2)
+    return jsonify(incomes)
 
+@app.route('/incomes', methods=['POST'])
+def add_income():
+    incomes.append(request.get_json())
+    return '', 204
 
 app.run()
 
