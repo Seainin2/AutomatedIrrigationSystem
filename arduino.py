@@ -3,10 +3,8 @@ from math import floor
 from pyfirmata import Arduino, util
 
 class ArduinoNano:
-        def __init__(self):
-                print("setting up port")
-                self.board = Arduino("COM9",baudrate=57600)
-                print("Done")
+        def __init__(self,usb):
+                self.board = Arduino(usb,baudrate=57600)
                 self.pumps = []
 
         def add_pump(self,pump_name,pump_pin,ms_pin,ms_highest_value,ms_lowest_value):

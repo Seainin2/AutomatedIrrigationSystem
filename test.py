@@ -4,7 +4,7 @@ import pyfirmata
 
 if __name__ == "__main__":
 
-    nano = ar.ArduinoNano('COM9')
+    nano = ar.ArduinoNano('/dev/ttyUSB0')
 
     nano.add_pump('one',  2,  0,0.7,0.24)
     nano.add_pump('two',  3,  1,0.7,0.24)
